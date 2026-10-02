@@ -1,0 +1,167 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}
+    <li class="nav-item active"><a class="nav-link" href="{{ path('registro_index') }}">Registros</a></li>
+{% endblock %}
+
+{% block navr %}
+    <li class="nav-item active"><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-4 pb-5">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('admin') }}">Solicitudes de registro</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ registro.nombre }} {{ registro.paterno }} {{ registro.materno }}</li>
+            </ol>
+        </nav>
+
+        {% for flash_message in app.session.flashbag.get('notice') %}
+            <div class="alert alert-success" role="alert">
+                <i class="fa-solid fa-check me-2"></i>{{ flash_message }}
+            </div>
+        {% endfor %}
+
+        <div class="mb-4">
+            <h1 class="h3 mb-1"><i class="fa-solid fa-user text-primary me-2"></i>{{ registro.nombre }} {{ registro.paterno }} {{ registro.materno }}</h1>
+            <p class="text-body-secondary mb-0">{{ registro.mail }}</p>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h6 mb-0"><i class="fa-solid fa-address-card text-primary me-2"></i>Datos generales</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="small text-body-secondary">Dirección</div>
+                <div>{{ registro.direccion }}</div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h6 mb-0"><i class="fa-solid fa-book text-primary me-2"></i>Documentación</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-sm align-middle mb-0">
+                        <tbody>
+                        <tr>
+                            <th class="text-body-secondary fw-normal text-start" style="width: 240px;">Carta solicitud</th>
+                            <td><a href="{{ vich_uploader_asset(registro, 'solicitudFile') }}" target="_blank">{{ registro.solicitudName }}</a></td>
+                        </tr>
+                        <tr>
+                            <th class="text-body-secondary fw-normal text-start">Currículum Vitae</th>
+                            <td><a href="{{ vich_uploader_asset(registro, 'cvFile') }}" target="_blank">{{ registro.cvName }}</a></td>
+                        </tr>
+                        <tr>
+                            <th class="text-body-secondary fw-normal text-start">Comprobante oficial de grado</th>
+                            <td><a href="{{ vich_uploader_asset(registro, 'comprobanteFile') }}" target="_blank">{{ registro.comprobanteName }}</a></td>
+                        </tr>
+                        <tr>
+                            <th class="text-body-secondary fw-normal text-start">Proyecto de investigación</th>
+                            <td><a href="{{ vich_uploader_asset(registro, 'proyectoFile') }}" target="_blank">{{ registro.proyectoName }}</a></td>
+                        </tr>
+                        <tr>
+                            <th class="text-body-secondary fw-normal text-start">Artículos</th>
+                            <td><a href="{{ vich_uploader_asset(registro, 'articulosFile') }}" target="_blank">{{ registro.articulosName }}</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h6 mb-0"><i class="fa-solid fa-user-group text-primary me-2"></i>Recomendaciones</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="border rounded-3 p-3 h-100">
+                            <h3 class="h6 text-body-secondary mb-3">Referencia 1</h3>
+                            <div class="mb-2">
+                                <div class="small text-body-secondary">Nombre</div>
+                                <div>{{ registro.ref1nombre }}</div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="small text-body-secondary">Correo</div>
+                                <div>{{ registro.ref1mail }}</div>
+                            </div>
+                            <div>
+                                <div class="small text-body-secondary">Carta de recomendación</div>
+                                {% if registro.ref1recomName %}
+                                    <a href="{{ vich_uploader_asset(registro, 'ref1recomFile') }}" target="_blank">{{ registro.ref1recomName }}</a>
+                                {% else %}
+                                    <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="border rounded-3 p-3 h-100">
+                            <h3 class="h6 text-body-secondary mb-3">Referencia 2</h3>
+                            <div class="mb-2">
+                                <div class="small text-body-secondary">Nombre</div>
+                                <div>{{ registro.ref2nombre }}</div>
+                            </div>
+                            <div class="mb-2">
+                                <div class="small text-body-secondary">Correo</div>
+                                <div>{{ registro.ref2mail }}</div>
+                            </div>
+                            <div>
+                                <div class="small text-body-secondary">Carta de recomendación</div>
+                                {% if registro.ref2recomName %}
+                                    <a href="{{ vich_uploader_asset(registro, 'ref2recomFile') }}" target="_blank">{{ registro.ref2recomName }}</a>
+                                {% else %}
+                                    <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h6 mb-0"><i class="fa-solid fa-pen-to-square text-primary me-2"></i>Datos de control</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-3">
+                    <div class="col-lg-4">
+                        <div class="small text-body-secondary mb-1">Seleccionado</div>
+                        {% if registro.activo == true %}
+                            <span class="badge bg-success">Si</span>
+                        {% else %}
+                            <span class="badge bg-danger">No</span>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="small text-body-secondary">Creado</div>
+                        <div class="text-body-secondary">{{ registro.createdAt|format_datetime(pattern="EEEE d 'de' MMMM 'de' y 'a las' HH:mm:ss", locale='es') }}</div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="small text-body-secondary">Modificado</div>
+                        <div class="text-body-secondary">
+                            {% if registro.updatedAt %}
+                                {{ registro.updatedAt|format_datetime(pattern="EEEE d 'de' MMMM 'de' y 'a las' HH:mm:ss", locale='es') }}
+                            {% else %}
+                                &mdash;
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2">
+            <a href="{{ path('admin') }}" class="btn btn-outline-secondary"><i class="fa-solid fa-arrow-left me-2"></i>Ver solicitudes</a>
+            <a href="{{ path('form_eval', {'id': registro.id}) }}" class="btn btn-primary"><i class="fa-solid fa-square-check me-2"></i>Evaluar solicitud</a>
+        </div>
+    </div>
+
+{% endblock %}

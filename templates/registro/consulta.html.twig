@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}{{ importmap(['app', 'admin_tables']) }}{% endblock %}
+
+{% block nav %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item active"><a class="nav-link" href="{{ path('registro_index') }}">Registros</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block navr %}
+    <li class="nav-item active"><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-4 pb-5">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="example">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>CV</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.paterno|title ~ ' ' ~ registro.materno|title ~ ' ' ~ registro.nombre|title }}</td>
+                        <td><a href="{{ vich_uploader_asset(registro, 'cvFile') }}" target="_blank">{{ registro.cvName }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

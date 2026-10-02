@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}{{ importmap(['app', 'admin_tables']) }}{% endblock %}
+
+{% block nav %}
+    <li class="nav-item active"><a class="nav-link" href="{{ path('registro_index') }}">Registros</a></li>
+    <li class="nav-item"><button type="button" class="nav-link btn btn-link" data-bs-toggle="modal" data-bs-target="#correos">Correos</button></li>
+{% endblock %}
+
+{% block navr %}
+    <li class="nav-item active"><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-4 pb-5">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="example">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Recomendación 1</th>
+                    <th>Recomendación 2</th>
+                    <th>Activo</th>
+                    <th>Ver</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for registro in registros %}
+                    <tr>
+                        <td><a href="{{ path('registro_show', {'id': registro.id}) }}">{{ registro.paterno|title ~ ' ' ~ registro.materno|title ~ ' ' ~ registro.nombre|title }}</a></td>
+                        <td>{{ registro.mail }}</td>
+                        <td>{% if registro.ref1recomName %}<span class="badge bg-success"><i class="fa-solid fa-square-check"></i> Si</span>{% else %}<span class="badge bg-danger"><i class="fa-solid fa-circle-xmark"></i> No</span>{% endif %}</td>
+                        <td>{% if registro.ref2recomName %}<span class="badge bg-success"><i class="fa-solid fa-square-check"></i> Si</span>{% else %}<span class="badge bg-danger"><i class="fa-solid fa-circle-xmark"></i> No</span>{% endif %}</td>
+                        <td class="text-center">
+                            {% if registro.activo == true %}
+                                <span class="badge bg-success"><i class="fa-solid fa-square-check"></i> Si</span>
+                            {% elseif registro.activo is null %}
+                                <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
+                            {% elseif registro.activo == false %}
+                                <span class="badge bg-danger"><i class="fa-solid fa-circle-xmark"></i> No</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('registro_show', {'id': registro.id}) }}"><i class="fa-solid fa-magnifying-glass-plus"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="correos">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="gridSystemModalLabel">Correos</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            {% set total = 0 %}
+                            {% for registro in registros %}
+                                {{ registro.mail }},
+                                {% set total = total + 1 %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <br><strong>{{ total }} registros</strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

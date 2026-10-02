@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme edit_form 'registro/_form_errors.html.twig' %}
+
+{% block nav %}
+    <li class="nav-item active"><span class="nav-link disabled">{{ 'Recomendación'|trans }}</span></li>
+{% endblock %}
+
+{% block navr %}
+    <li class="nav-item"><a class="nav-link" href="{{ path(app.current_route, app.current_route_parameters|merge(app.request.query.all)|merge({'_locale': 'es'})) }}"> <span class="lang-sm lang-lbl" lang="es"></span></a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path(app.current_route, app.current_route_parameters|merge(app.request.query.all)|merge({'_locale': 'en'})) }}"> <span class="lang-sm lang-lbl" lang="en"></span></a></li>
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container pt-4 pb-5">
+
+        <div class="mb-4">
+            <h1 class="h3 mb-0"><i class="fa-solid fa-user-check text-primary me-2"></i>{{ 'Recomendación'|trans }}</h1>
+        </div>
+
+        {% block info %}
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h2 class="h6 text-primary mb-3"><i class="fa-solid fa-triangle-exclamation me-2"></i>{{ 'Importante'|trans }}</h2>
+                    <ul class="small text-body-secondary ps-3 mb-0">
+                        <li>{{ 'Debe asegurarse que el archivo a enviar a través de este formulario sea de un tamaño menor a 2MB y en formato PDF.'|trans }}</li>
+                        <li>{{ 'Al finalizar el envío de este formulario debe de visualizar una pantalla de confirmación.'|trans }}</li>
+                        <li>
+                            {{ 'Recibirá un correo electrónico a su cuenta y a la cuenta de correo de la persona que está recomendado, de no ser así favor de escribir a'|trans }}
+                            <strong class="text-body">webmaster@matmor.unam.mx</strong>
+                            {{ 'para asegurarse que se haya recibido su información.'|trans }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {% endblock %}
+
+        {{ form_start(edit_form) }}
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    {% if edit_form.ref1recomFile is defined %}
+                        <div class="col-lg-6">
+                            {{ form_widget(edit_form.ref1recomFile) }}
+                            {{ form_errors(edit_form.ref1recomFile) }}
+                        </div>
+                    {% endif %}
+
+                    {% if edit_form.ref2recomFile is defined %}
+                        <div class="col-lg-6">
+                            {{ form_widget(edit_form.ref2recomFile) }}
+                            {{ form_errors(edit_form.ref2recomFile) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane me-2"></i>{{ 'Enviar'|trans }}</button>
+        </div>
+        {{ form_end(edit_form) }}
+
+    </div>
+{% endblock %}

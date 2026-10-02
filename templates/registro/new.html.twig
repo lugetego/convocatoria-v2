@@ -1,0 +1,224 @@
+{% extends 'base.html.twig' %}
+
+{% if not closed %}
+{% form_theme form 'registro/_form_errors.html.twig' %}
+{% endif %}
+
+{% block nav %}
+    <li class="nav-item active"><span class="nav-link disabled">{{ 'Formulario de solicitud'|trans }}</span></li>
+{% endblock %}
+
+{% block navr %}
+    <li class="nav-item"><a class="nav-link" href="{{ path(app.current_route, app.current_route_parameters|merge(app.request.query.all)|merge({'_locale': 'es'})) }}"> <span class="lang-sm lang-lbl" lang="es"></span></a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path(app.current_route, app.current_route_parameters|merge(app.request.query.all)|merge({'_locale': 'en'})) }}"> <span class="lang-sm lang-lbl" lang="en"></span></a></li>
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+{% if closed %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm text-center">
+                    <div class="card-body py-5">
+                        <i class="fa-solid fa-circle-xmark text-danger fa-2x mb-3"></i>
+                        <h1 class="h4">{{ 'La convocatoria está cerrada.'|trans }}</h1>
+                        <p class="text-body-secondary mb-0">
+                            {{ 'El periodo de recepción de solicitudes concluyó el'|trans }} {{ deadline|format_datetime(dateFormat: 'full', timeFormat: 'none', locale: app.request.locale) }}.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+
+    <div class="container pt-3 pb-4">
+
+        <div class="mb-4">
+            <h1 class="h3 mb-0">{{ 'Formulario de solicitud'|trans }}</h1>
+        </div>
+
+        {{ form_errors(form) }}
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body d-flex justify-content-between align-items-center" role="button" data-bs-toggle="collapse" data-bs-target="#instrucciones" aria-expanded="true" aria-controls="instrucciones">
+                <h2 class="h6 mb-0 text-primary"><i class="fa-solid fa-circle-info me-2"></i>{{ 'Instrucciones'|trans }}</h2>
+                <i class="fa-solid fa-chevron-down text-body-secondary small"></i>
+            </div>
+            <div class="collapse show" id="instrucciones">
+                <div class="card-body pt-0">
+                    <ul class="small text-body-secondary ps-3 mb-0">
+                        <li>{{ 'Asegúrese de que la información y los archivos que enviará sean los correctos, después de ser enviados ya no podrán ser modificados.'|trans }}</li>
+                        <li>{{ 'La documentación requerida sólo podrá ser recibida por medio de este sistema.'|trans }}</li>
+                        <li>{{ 'Los campos con * son obligatorios. Cada uno de los archivos en los siguientes campos deberá ser en formato PDF y en tamaño no mayor que 25 MB.'|trans }}</li>
+                        <li>
+                            {{ 'Una vez concluido el proceso de registro de documentos, el solicitante recibirá un acuse de recibo. De no recibir dicha notificación o si se tiene algún problema con el llenado de esta solicitud, el solicitante debe ponerse en contacto al siguiente correo:'|trans }}
+                            <strong class="text-body">webmaster<i class="fa-solid fa-at"></i>matmor.unam.mx</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        {{ form_start(form) }}
+
+        <div class="card border-0 shadow-sm mb-5">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h6 mb-0"><i class="fa-solid fa-user text-primary me-2"></i>{{ 'Datos personales'|trans }}</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="form-floating">
+                            {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder': '*Nombre(s)'|trans}}) }}
+                            {{ form_label(form.nombre, '*Nombre(s)'|trans) }}
+                        </div>
+                        {{ form_errors(form.nombre) }}
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-floating">
+                            {{ form_widget(form.paterno, {'attr': {'class': 'form-control', 'placeholder': '*Apellido paterno'|trans}}) }}
+                            {{ form_label(form.paterno, '*Apellido paterno'|trans) }}
+                        </div>
+                        {{ form_errors(form.paterno) }}
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-floating">
+                            {{ form_widget(form.materno, {'attr': {'class': 'form-control', 'placeholder': 'Apellido materno'|trans}}) }}
+                            {{ form_label(form.materno, 'Apellido materno'|trans) }}
+                        </div>
+                        {{ form_errors(form.materno) }}
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-floating">
+                            {{ form_widget(form.mail, {'attr': {'class': 'form-control', 'placeholder': '*Correo electrónico'|trans}}) }}
+                            {{ form_label(form.mail, '*Correo electrónico'|trans) }}
+                        </div>
+                        {{ form_errors(form.mail) }}
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-floating">
+                            {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder': '*Dirección'|trans}}) }}
+                            {{ form_label(form.direccion, '*Dirección'|trans) }}
+                        </div>
+                        {{ form_errors(form.direccion) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-5">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h6 mb-0"><i class="fa-solid fa-book text-primary me-2"></i>{{ 'Documentación requerida'|trans }}</h2>
+            </div>
+            <div class="card-body p-4">
+                <div class="row g-4 align-items-start">
+                    <div class="col-lg-6">
+                        {{ form_label(form.solicitudFile, null, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(form.solicitudFile) }}
+                        {{ form_errors(form.solicitudFile) }}
+                        <div class="form-text">
+                            {{ 'Especificando los motivos del interesado para laborar en el CCM.'|trans }}
+                            {{ 'Incluir en la carta la dirección postal, la dirección de correo electrónico, y el teléfono del solicitante.'|trans }}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        {{ form_label(form.cvFile, null, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(form.cvFile) }}
+                        {{ form_errors(form.cvFile) }}
+                    </div>
+
+                    <div class="col-lg-6">
+                        {{ form_label(form.comprobanteFile, null, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(form.comprobanteFile) }}
+                        {{ form_errors(form.comprobanteFile) }}
+                    </div>
+
+                    <div class="col-lg-6">
+                        {{ form_label(form.proyectoFile, null, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(form.proyectoFile) }}
+                        {{ form_errors(form.proyectoFile) }}
+                        <div class="form-text">
+                            {{ 'Proyecto de investigación en donde se describa de manera breve, entre 2 a 4 cuartillas, la investigación a realizar en el CCM.'|trans }}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        {{ form_label(form.articulosFile, null, {'label_attr': {'class': 'form-label fw-semibold'}}) }}
+                        {{ form_widget(form.articulosFile) }}
+                        {{ form_errors(form.articulosFile) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-5">
+            <div class="card-header bg-white border-bottom py-3">
+                <h2 class="h6 mb-0"><i class="fa-solid fa-user-group text-primary me-2"></i>{{ 'Referencias'|trans }}</h2>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-body-secondary small">
+                    {{ 'Se solicita que proporcione la siguiente información sobre 2 personas que lo recomiendan.'|trans }}
+                    {{ 'A cada una se le enviará un correo electrónico a la dirección proporcionada para solicitarle que nos haga llegar una su recomendación.'|trans }}
+                </p>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="border rounded-3 p-4 h-100">
+                            <h3 class="h6 text-body-secondary mb-3">{{ 'Nombre de la persona que lo recomienda'|trans ~ ' 1' }}</h3>
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    {{ form_widget(form.ref1nombre, {'attr': {'class': 'form-control', 'placeholder': 'Nombre'|trans}}) }}
+                                    {{ form_label(form.ref1nombre, '*Nombre'|trans) }}
+                                </div>
+                                {{ form_errors(form.ref1nombre) }}
+                            </div>
+                            <div>
+                                <div class="form-floating">
+                                    {{ form_widget(form.ref1mail, {'attr': {'class': 'form-control', 'placeholder': 'Correo electrónico'|trans}}) }}
+                                    {{ form_label(form.ref1mail, '*Correo electrónico'|trans) }}
+                                </div>
+                                {{ form_errors(form.ref1mail) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="border rounded-3 p-4 h-100">
+                            <h3 class="h6 text-body-secondary mb-3">{{ 'Nombre de la persona que lo recomienda'|trans ~ ' 2' }}</h3>
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    {{ form_widget(form.ref2nombre, {'attr': {'class': 'form-control', 'placeholder': 'Nombre'|trans}}) }}
+                                    {{ form_label(form.ref2nombre, '*Nombre'|trans) }}
+                                </div>
+                                {{ form_errors(form.ref2nombre) }}
+                            </div>
+                            <div>
+                                <div class="form-floating">
+                                    {{ form_widget(form.ref2mail, {'attr': {'class': 'form-control', 'placeholder': 'Correo electrónico'|trans}}) }}
+                                    {{ form_label(form.ref2mail, '*Correo electrónico'|trans) }}
+                                </div>
+                                {{ form_errors(form.ref2mail) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-5">
+            <button type="submit" class="btn btn-primary btn-lg px-4">
+                {{ 'Enviar información'|trans }} <i class="fa-solid fa-paper-plane ms-2"></i>
+            </button>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endif %}
+
+{% endblock %}

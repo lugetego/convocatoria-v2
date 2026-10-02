@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm text-center mb-4">
+                    <div class="card-body py-5">
+                        <i class="fa-solid fa-circle-check text-success fa-2x mb-3"></i>
+                        <p class="mb-3">
+                            <strong>{{ entity.nombre|title }} {{ entity.paterno|title }} {{ entity.materno|title }}</strong> gracias por su registro.<br>
+                            Recibirá un correo de confirmación a la dirección que nos proporcionó: <strong>{{ entity.mail }}</strong>
+                        </p>
+                        <p class="small text-body-secondary mb-0">
+                            Si no recibe el correo de confirmación debe verificar en su bandeja de correos no deseados, si no lo ha recibido debe escribir a <strong>webmaster<i class="fa-solid fa-at"></i>matmor.unam.mx</strong> para confirmar su registro.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm text-center mb-4">
+                    <div class="card-body py-5">
+                        <i class="fa-solid fa-circle-check text-success fa-2x mb-3"></i>
+                        <p class="mb-3">
+                            <strong>{{ entity.nombre|title }} {{ entity.paterno|title }} {{ entity.materno|title }}</strong> thanks for your registration.<br>
+                            You will receive a confirmation email to the address you provided: <strong>{{ entity.mail }}</strong>
+                        </p>
+                        <p class="small text-body-secondary mb-0">
+                            If you do not receive the confirmation email you must check in your mailbox spam, if you have not received it must write to <strong>webmaster<i class="fa-solid fa-at"></i>matmor.unam.mx</strong> to confirm your registration.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="http://www.matmor.unam.mx/" class="btn btn-primary">Finalizar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

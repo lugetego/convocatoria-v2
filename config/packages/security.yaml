@@ -1,0 +1,45 @@
+security:
+    password_hashers:
+        App\Entity\User: 'auto'
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login_check
+                default_target_path: /registro/
+            logout:
+                path: app_logout
+                target: app_login
+
+    # Note: Only the *first* matching rule is applied
+    access_control:
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/logout, roles: PUBLIC_ACCESS }
+        - { path: ^/registro/new, roles: PUBLIC_ACCESS }
+        - { path: ^/registro/\d+/confirmado, roles: PUBLIC_ACCESS }
+        - { path: ^/registro/\d+/carta-confirmada, roles: PUBLIC_ACCESS }
+        - { path: ^/registro/\d+/\d+/[^/]+/[^/]+/recom, roles: PUBLIC_ACCESS }
+        - { path: ^/admin/consulta, roles: [ROLE_CONSULTA, ROLE_ADMIN] }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/, roles: ROLE_ADMIN }
+
+when@test:
+    security:
+        password_hashers:
+            # Password hashers are resource-intensive by design to ensure security.
+            # In tests, it's safe to reduce their cost to improve performance.
+            App\Entity\User:
+                algorithm: bcrypt
+                cost: 4

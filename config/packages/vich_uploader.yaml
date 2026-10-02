@@ -1,0 +1,38 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        registro_solicitud:
+            uri_prefix: /uploads/submissions
+            upload_destination: '%kernel.project_dir%/public/uploads/submissions'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        registro_cv:
+            uri_prefix: /uploads/submissions
+            upload_destination: '%kernel.project_dir%/public/uploads/submissions'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        registro_comprobante:
+            uri_prefix: /uploads/submissions
+            upload_destination: '%kernel.project_dir%/public/uploads/submissions'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        registro_proyecto:
+            uri_prefix: /uploads/submissions
+            upload_destination: '%kernel.project_dir%/public/uploads/submissions'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        registro_articulos:
+            uri_prefix: /uploads/submissions
+            upload_destination: '%kernel.project_dir%/public/uploads/submissions'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        registro_ref1recom:
+            uri_prefix: /uploads/submissions
+            upload_destination: '%kernel.project_dir%/public/uploads/submissions'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        registro_ref2recom:
+            uri_prefix: /uploads/submissions
+            upload_destination: '%kernel.project_dir%/public/uploads/submissions'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

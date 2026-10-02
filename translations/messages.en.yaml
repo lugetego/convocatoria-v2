@@ -1,0 +1,40 @@
+Contacto: Contact
+'Formulario de solicitud': 'Application form'
+Instrucciones: Instructions
+'Asegúrese de que la información y los archivos que enviará sean los correctos, después de ser enviados ya no podrán ser modificados.': 'Make sure that all the information submitted is correct, once it has been sent, you will not be able to modify it.'
+'La documentación requerida sólo podrá ser recibida por medio de este sistema.': 'The required documentation can only be received through this system.'
+'Los campos con * son obligatorios. Cada uno de los archivos en los siguientes campos deberá ser en formato PDF y en tamaño no mayor que 25 MB.': 'Fields with * are required. Each file in the following fields must be a PDF file of size not greater than 25 MB.'
+'Una vez concluido el proceso de registro de documentos, el solicitante recibirá un acuse de recibo. De no recibir dicha notificación o si se tiene algún problema con el llenado de esta solicitud, el solicitante debe ponerse en contacto al siguiente correo:': 'Once you have finished uploading your documents, you will receive an acknowledgement. If such an acknowledgement is not received, you must contact us at'
+'Datos personales': 'Personal Information'
+'*Nombre(s)': '*First name'
+'*Apellido paterno': '*Lastname'
+'Apellido materno': '*Middle name'
+'*Correo electrónico': '*e-mail'
+'*Dirección': '*Address'
+'*Carta Solicitud': '*Cover letter'
+'*Currículum Vitae': '*Curriculum Vitae'
+'*Comprobante oficial de grado': '*Degree certificate'
+'*Proyecto de investigación': '*Research project'
+'*Sobretiros de artículos publicados y versiones preliminares de artículos aceptados': '*Complete list of publications in research journals and preprints of accepted papers'
+'Documentación requerida': 'Required documentation'
+'Especificando los motivos del interesado para laborar en el CCM.': 'Specify your motivation to work at CCM.'
+'Incluir en la carta la dirección postal, la dirección de correo electrónico, y el teléfono del solicitante.': 'Please include postal address, e-mail and telephone number.'
+'Proyecto de investigación en donde se describa de manera breve, entre 2 a 4 cuartillas, la investigación a realizar en el CCM.': 'You must write a research project to develop at CCM.'
+'Se solicita que proporcione la siguiente información sobre 2 personas que lo recomiendan.': 'Please supply contact information about two reference letters.'
+'A cada una se le enviará un correo electrónico a la dirección proporcionada para solicitarle que nos haga llegar una su recomendación.': 'We will contact each of this persons and ask directly for recommendations on your behalf.'
+'*Nombre de la persona que lo recomienda': '*Name of Reference'
+'Nombre de la persona que lo recomienda': 'Name of Reference'
+Nombre: Name
+'*Nombre': '*Name'
+Referencias: References
+'Correo electrónico': e-mail
+'Enviar información': 'Send information'
+'La convocatoria está cerrada.': 'Applications are closed.'
+'El periodo de recepción de solicitudes concluyó el': 'The submission period ended on'
+Recomendación: Recommendation
+Importante: Important
+'Debe asegurarse que el archivo a enviar a través de este formulario sea de un tamaño menor a 2MB y en formato PDF.': 'You must ensure that the file to be sent through this form is of a size less than 2MB and PDF.'
+'Al finalizar el envío de este formulario debe de visualizar una pantalla de confirmación.': 'After sending this form must display a confirmation screen.'
+'Recibirá un correo electrónico a su cuenta y a la cuenta de correo de la persona que está recomendado, de no ser así favor de escribir a': 'You will receive an email to your account and mail account of the person who is recommended not to be so please write to'
+'para asegurarse que se haya recibido su información.': 'to ensure that your information has been received.'
+Enviar: Send
