@@ -50,23 +50,23 @@
                         <tbody>
                         <tr>
                             <th class="text-body-secondary fw-normal text-start" style="width: 240px;">Carta solicitud</th>
-                            <td><a href="{{ vich_uploader_asset(registro, 'solicitudFile') }}" target="_blank">{{ registro.solicitudName }}</a></td>
+                            <td><a href="{{ asset(vich_uploader_asset(registro, 'solicitudFile')) }}" target="_blank">{{ registro.solicitudName }}</a></td>
                         </tr>
                         <tr>
                             <th class="text-body-secondary fw-normal text-start">Currículum Vitae</th>
-                            <td><a href="{{ vich_uploader_asset(registro, 'cvFile') }}" target="_blank">{{ registro.cvName }}</a></td>
+                            <td><a href="{{ asset(vich_uploader_asset(registro, 'cvFile')) }}" target="_blank">{{ registro.cvName }}</a></td>
                         </tr>
                         <tr>
                             <th class="text-body-secondary fw-normal text-start">Comprobante oficial de grado</th>
-                            <td><a href="{{ vich_uploader_asset(registro, 'comprobanteFile') }}" target="_blank">{{ registro.comprobanteName }}</a></td>
+                            <td><a href="{{ asset(vich_uploader_asset(registro, 'comprobanteFile')) }}" target="_blank">{{ registro.comprobanteName }}</a></td>
                         </tr>
                         <tr>
                             <th class="text-body-secondary fw-normal text-start">Proyecto de investigación</th>
-                            <td><a href="{{ vich_uploader_asset(registro, 'proyectoFile') }}" target="_blank">{{ registro.proyectoName }}</a></td>
+                            <td><a href="{{ asset(vich_uploader_asset(registro, 'proyectoFile')) }}" target="_blank">{{ registro.proyectoName }}</a></td>
                         </tr>
                         <tr>
                             <th class="text-body-secondary fw-normal text-start">Artículos</th>
-                            <td><a href="{{ vich_uploader_asset(registro, 'articulosFile') }}" target="_blank">{{ registro.articulosName }}</a></td>
+                            <td><a href="{{ asset(vich_uploader_asset(registro, 'articulosFile')) }}" target="_blank">{{ registro.articulosName }}</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -94,7 +94,7 @@
                             <div>
                                 <div class="small text-body-secondary">Carta de recomendación</div>
                                 {% if registro.ref1recomName %}
-                                    <a href="{{ vich_uploader_asset(registro, 'ref1recomFile') }}" target="_blank">{{ registro.ref1recomName }}</a>
+                                    <a href="{{ asset(vich_uploader_asset(registro, 'ref1recomFile')) }}" target="_blank">{{ registro.ref1recomName }}</a>
                                 {% else %}
                                     <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
                                 {% endif %}
@@ -115,7 +115,7 @@
                             <div>
                                 <div class="small text-body-secondary">Carta de recomendación</div>
                                 {% if registro.ref2recomName %}
-                                    <a href="{{ vich_uploader_asset(registro, 'ref2recomFile') }}" target="_blank">{{ registro.ref2recomName }}</a>
+                                    <a href="{{ asset(vich_uploader_asset(registro, 'ref2recomFile')) }}" target="_blank">{{ registro.ref2recomName }}</a>
                                 {% else %}
                                     <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
                                 {% endif %}

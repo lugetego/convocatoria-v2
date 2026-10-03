@@ -27,7 +27,7 @@
                 {% for registro in registros %}
                     <tr>
                         <td>{{ registro.paterno|title ~ ' ' ~ registro.materno|title ~ ' ' ~ registro.nombre|title }}</td>
-                        <td><a href="{{ vich_uploader_asset(registro, 'cvFile') }}" target="_blank">{{ registro.cvName }}</a></td>
+                        <td><a href="{{ asset(vich_uploader_asset(registro, 'cvFile')) }}" target="_blank">{{ registro.cvName }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
