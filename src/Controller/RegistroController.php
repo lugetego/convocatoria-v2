@@ -154,7 +154,7 @@ class RegistroController extends AbstractController
         $editForm = $this->createForm(RegistroType::class, $registro);
         foreach ([
             'nombre', 'paterno', 'materno', 'mail', 'direccion',
-            'solicitudFile', 'cvFile', 'comprobanteFile', 'proyectoFile', 'articulosFile',
+            'solicitudFile', 'cvFile', 'comprobanteFile', 'proyectoFile',
             'ref1nombre', 'ref2nombre', 'ref3nombre', 'ref1mail', 'ref2mail', 'ref3mail', 'activo',
         ] as $field) {
             $editForm->remove($field);
@@ -229,7 +229,6 @@ class RegistroController extends AbstractController
         $registro->cvFile = null;
         $registro->comprobanteFile = null;
         $registro->proyectoFile = null;
-        $registro->articulosFile = null;
         $registro->ref1recomFile = null;
         $registro->ref2recomFile = null;
         $registro->ref3recomFile = null;

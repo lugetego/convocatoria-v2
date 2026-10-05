@@ -45,10 +45,6 @@ class RegistroType extends AbstractType
                 'required' => true,
                 'label' => '*Proyecto de investigación',
             ])
-            ->add('articulosFile', VichFileType::class, [
-                'required' => true,
-                'label' => '*Sobretiros de artículos publicados y versiones preliminares de artículos aceptados',
-            ])
             ->add('ref1nombre', TextType::class, [
                 'required' => true,
             ])

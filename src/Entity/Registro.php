@@ -90,18 +90,6 @@ class Registro
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $proyectoName = null;
 
-    #[Vich\UploadableField(mapping: 'registro_articulos', fileNameProperty: 'articulosName')]
-    #[Assert\File(
-        maxSize: '30M',
-        uploadFormSizeErrorMessage: 'El archivo de artículos debe ser menor a 25 MB',
-        mimeTypes: ['application/pdf', 'application/x-pdf'],
-        mimeTypesMessage: 'Please upload a valid PDF',
-    )]
-    public ?File $articulosFile = null;
-
-    #[ORM\Column(length: 50, nullable: true)]
-    private ?string $articulosName = null;
-
     #[ORM\Column(name: 'ref1nombre', length: 255)]
     #[Assert\NotBlank]
     private ?string $ref1nombre = null;
@@ -328,29 +316,6 @@ class Registro
     public function setProyectoName(?string $proyectoName): void
     {
         $this->proyectoName = $proyectoName;
-    }
-
-    public function setArticulosFile(?File $articulos = null): void
-    {
-        $this->articulosFile = $articulos;
-        if ($articulos) {
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    }
-
-    public function getArticulosFile(): ?File
-    {
-        return $this->articulosFile;
-    }
-
-    public function getArticulosName(): ?string
-    {
-        return $this->articulosName;
-    }
-
-    public function setArticulosName(?string $articulosName): void
-    {
-        $this->articulosName = $articulosName;
     }
 
     public function setRef1nombre(?string $ref1nombre): static
