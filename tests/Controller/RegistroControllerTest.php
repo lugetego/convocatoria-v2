@@ -16,6 +16,7 @@ class RegistroControllerTest extends WebTestCase
         self::assertCount(5, $crawler->filter('input[type="file"]'));
         self::assertGreaterThan(0, $crawler->filter('input[name$="[ref1nombre]"]')->count());
         self::assertGreaterThan(0, $crawler->filter('input[name$="[ref2nombre]"]')->count());
+        self::assertGreaterThan(0, $crawler->filter('input[name$="[ref3nombre]"]')->count());
     }
 
     public function testEmptySubmissionShowsValidationErrors(): void

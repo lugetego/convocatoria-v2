@@ -70,6 +70,16 @@ class RegistroType extends AbstractType
                 'required' => true,
                 'label' => 'Recomendación',
             ])
+            ->add('ref3nombre', TextType::class, [
+                'required' => true,
+            ])
+            ->add('ref3mail', TextType::class, [
+                'required' => true,
+            ])
+            ->add('ref3recomFile', VichFileType::class, [
+                'required' => true,
+                'label' => 'Recomendación',
+            ])
             ->add('activo')
         ;
     }

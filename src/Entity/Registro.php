@@ -142,6 +142,26 @@ class Registro
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $ref2recomName = null;
 
+    #[ORM\Column(name: 'ref3nombre', length: 255)]
+    #[Assert\NotBlank]
+    private ?string $ref3nombre = null;
+
+    #[ORM\Column(name: 'ref3mail', length: 255)]
+    #[Assert\Email(message: "The email '{{ value }}' is not a valid email.")]
+    private ?string $ref3mail = null;
+
+    #[Vich\UploadableField(mapping: 'registro_ref3recom', fileNameProperty: 'ref3recomName')]
+    #[Assert\File(
+        maxSize: '2M',
+        uploadFormSizeErrorMessage: 'El archivo debe ser menor a 2 MB',
+        mimeTypes: ['application/pdf', 'application/x-pdf'],
+        mimeTypesMessage: 'Please upload a valid PDF',
+    )]
+    public ?File $ref3recomFile = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $ref3recomName = null;
+
     #[ORM\Column(nullable: true)]
     private ?bool $activo = null;
 
@@ -425,6 +445,53 @@ class Registro
     public function setRef2recomName(?string $ref2recomName): void
     {
         $this->ref2recomName = $ref2recomName;
+    }
+
+    public function setRef3nombre(?string $ref3nombre): static
+    {
+        $this->ref3nombre = $ref3nombre;
+
+        return $this;
+    }
+
+    public function getRef3nombre(): ?string
+    {
+        return $this->ref3nombre;
+    }
+
+    public function setRef3mail(?string $ref3mail): static
+    {
+        $this->ref3mail = $ref3mail;
+
+        return $this;
+    }
+
+    public function getRef3mail(): ?string
+    {
+        return $this->ref3mail;
+    }
+
+    public function setRef3recomFile(?File $ref3recom = null): void
+    {
+        $this->ref3recomFile = $ref3recom;
+        if ($ref3recom) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getRef3recomFile(): ?File
+    {
+        return $this->ref3recomFile;
+    }
+
+    public function getRef3recomName(): ?string
+    {
+        return $this->ref3recomName;
+    }
+
+    public function setRef3recomName(?string $ref3recomName): void
+    {
+        $this->ref3recomName = $ref3recomName;
     }
 
     public function setActivo(?bool $activo): static

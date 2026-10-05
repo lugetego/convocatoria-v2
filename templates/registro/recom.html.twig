@@ -55,6 +55,13 @@
                             {{ form_errors(edit_form.ref2recomFile) }}
                         </div>
                     {% endif %}
+
+                    {% if edit_form.ref3recomFile is defined %}
+                        <div class="col-lg-6">
+                            {{ form_widget(edit_form.ref3recomFile) }}
+                            {{ form_errors(edit_form.ref3recomFile) }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

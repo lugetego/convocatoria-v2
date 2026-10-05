@@ -50,6 +50,7 @@ class RegistroController extends AbstractController
         $form = $this->createForm(RegistroType::class, $registro);
         $form->remove('ref1recomFile');
         $form->remove('ref2recomFile');
+        $form->remove('ref3recomFile');
         $form->remove('activo');
 
         $form->handleRequest($request);
@@ -70,6 +71,7 @@ class RegistroController extends AbstractController
 
             $this->sendRecomInvite($mailer, $registro, 1, $registro->getRef1nombre(), $registro->getRef1mail(), $mailerFromAddress, $mailerBccAddress);
             $this->sendRecomInvite($mailer, $registro, 2, $registro->getRef2nombre(), $registro->getRef2mail(), $mailerFromAddress, $mailerBccAddress);
+            $this->sendRecomInvite($mailer, $registro, 3, $registro->getRef3nombre(), $registro->getRef3mail(), $mailerFromAddress, $mailerBccAddress);
 
             // Redirigir (en vez de renderizar directo) evita el patrón "re-mostrar formulario" que
             // Turbo Drive asume ante una respuesta 200 a un POST, y previene el reenvío al recargar.
@@ -138,10 +140,14 @@ class RegistroController extends AbstractController
             throw $this->createNotFoundException('Existe algún problema con la información de registro');
         }
 
-        if (1 === $ref && null !== $registro->getRef1recomName()) {
-            return $this->render('registro/confirm_recom.html.twig', ['entity' => $registro]);
-        }
-        if (2 === $ref && null !== $registro->getRef2recomName()) {
+        $refRecomName = match ($ref) {
+            1 => $registro->getRef1recomName(),
+            2 => $registro->getRef2recomName(),
+            3 => $registro->getRef3recomName(),
+            default => throw $this->createNotFoundException('Referencia inválida'),
+        };
+
+        if (null !== $refRecomName) {
             return $this->render('registro/confirm_recom.html.twig', ['entity' => $registro]);
         }
 
@@ -149,16 +155,15 @@ class RegistroController extends AbstractController
         foreach ([
             'nombre', 'paterno', 'materno', 'mail', 'direccion',
             'solicitudFile', 'cvFile', 'comprobanteFile', 'proyectoFile', 'articulosFile',
-            'ref1nombre', 'ref2nombre', 'ref1mail', 'ref2mail', 'activo',
+            'ref1nombre', 'ref2nombre', 'ref3nombre', 'ref1mail', 'ref2mail', 'ref3mail', 'activo',
         ] as $field) {
             $editForm->remove($field);
         }
 
-        if (1 === $ref) {
-            $editForm->remove('ref2recomFile');
-        }
-        if (2 === $ref) {
-            $editForm->remove('ref1recomFile');
+        foreach ([1, 2, 3] as $otherRef) {
+            if ($otherRef !== $ref) {
+                $editForm->remove("ref{$otherRef}recomFile");
+            }
         }
 
         $editForm->handleRequest($request);
@@ -169,12 +174,21 @@ class RegistroController extends AbstractController
             $entityManager->flush();
             $this->clearUploadedFiles($registro);
 
-            $refnombre = 1 === $ref ? $registro->getRef1nombre() : $registro->getRef2nombre();
+            $refnombre = match ($ref) {
+                1 => $registro->getRef1nombre(),
+                2 => $registro->getRef2nombre(),
+                3 => $registro->getRef3nombre(),
+            };
+            $refmail = match ($ref) {
+                1 => $registro->getRef1mail(),
+                2 => $registro->getRef2mail(),
+                3 => $registro->getRef3mail(),
+            };
 
             $mailer->send((new TemplatedEmail())
                 ->subject('Recomendación / Recommendation')
                 ->from($mailerFromAddress)
-                ->to(1 === $ref ? $registro->getRef1mail() : $registro->getRef2mail())
+                ->to($refmail)
                 ->cc($registro->getMail())
                 ->bcc($mailerBccAddress)
                 ->textTemplate('emails/mail_carta.txt.twig')
@@ -218,5 +232,6 @@ class RegistroController extends AbstractController
         $registro->articulosFile = null;
         $registro->ref1recomFile = null;
         $registro->ref2recomFile = null;
+        $registro->ref3recomFile = null;
     }
 }

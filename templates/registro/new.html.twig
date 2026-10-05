@@ -163,12 +163,12 @@
             </div>
             <div class="card-body p-4">
                 <p class="text-body-secondary small">
-                    {{ 'Se solicita que proporcione la siguiente información sobre 2 personas que lo recomiendan.'|trans }}
+                    {{ 'Se solicita que proporcione la siguiente información sobre 3 personas que lo recomiendan.'|trans }}
                     {{ 'A cada una se le enviará un correo electrónico a la dirección proporcionada para solicitarle que nos haga llegar una su recomendación.'|trans }}
                 </p>
 
                 <div class="row g-4">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="border rounded-3 p-4 h-100">
                             <h3 class="h6 text-body-secondary mb-3">{{ 'Nombre de la persona que lo recomienda'|trans ~ ' 1' }}</h3>
                             <div class="mb-3">
@@ -188,7 +188,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="border rounded-3 p-4 h-100">
                             <h3 class="h6 text-body-secondary mb-3">{{ 'Nombre de la persona que lo recomienda'|trans ~ ' 2' }}</h3>
                             <div class="mb-3">
@@ -204,6 +204,26 @@
                                     {{ form_label(form.ref2mail, '*Correo electrónico'|trans) }}
                                 </div>
                                 {{ form_errors(form.ref2mail) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="border rounded-3 p-4 h-100">
+                            <h3 class="h6 text-body-secondary mb-3">{{ 'Nombre de la persona que lo recomienda'|trans ~ ' 3' }}</h3>
+                            <div class="mb-3">
+                                <div class="form-floating">
+                                    {{ form_widget(form.ref3nombre, {'attr': {'class': 'form-control', 'placeholder': 'Nombre'|trans}}) }}
+                                    {{ form_label(form.ref3nombre, '*Nombre'|trans) }}
+                                </div>
+                                {{ form_errors(form.ref3nombre) }}
+                            </div>
+                            <div>
+                                <div class="form-floating">
+                                    {{ form_widget(form.ref3mail, {'attr': {'class': 'form-control', 'placeholder': 'Correo electrónico'|trans}}) }}
+                                    {{ form_label(form.ref3mail, '*Correo electrónico'|trans) }}
+                                </div>
+                                {{ form_errors(form.ref3mail) }}
                             </div>
                         </div>
                     </div>
