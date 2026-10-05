@@ -79,68 +79,66 @@
                 <h2 class="h6 mb-0"><i class="fa-solid fa-user-group text-primary me-2"></i>Recomendaciones</h2>
             </div>
             <div class="card-body p-4">
-                <div class="row g-4">
-                    <div class="col-lg-4">
-                        <div class="border rounded-3 p-3 h-100">
-                            <h3 class="h6 text-body-secondary mb-3">Referencia 1</h3>
-                            <div class="mb-2">
-                                <div class="small text-body-secondary">Nombre</div>
-                                <div>{{ registro.ref1nombre }}</div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="small text-body-secondary">Correo</div>
-                                <div>{{ registro.ref1mail }}</div>
-                            </div>
-                            <div>
-                                <div class="small text-body-secondary">Carta de recomendación</div>
-                                {% if registro.ref1recomName %}
-                                    <a href="{{ asset(vich_uploader_asset(registro, 'ref1recomFile')) }}" target="_blank">{{ registro.ref1recomName }}</a>
-                                {% else %}
-                                    <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
-                                {% endif %}
-                            </div>
+                <div class="border rounded-3 p-3 mb-3">
+                    <h3 class="h6 text-body-secondary mb-3">Referencia 1</h3>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Nombre</div>
+                            <div>{{ registro.ref1nombre }}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Correo</div>
+                            <div>{{ registro.ref1mail }}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Carta de recomendación</div>
+                            {% if registro.ref1recomName %}
+                                <a href="{{ asset(vich_uploader_asset(registro, 'ref1recomFile')) }}" target="_blank">{{ registro.ref1recomName }}</a>
+                            {% else %}
+                                <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="border rounded-3 p-3 h-100">
-                            <h3 class="h6 text-body-secondary mb-3">Referencia 2</h3>
-                            <div class="mb-2">
-                                <div class="small text-body-secondary">Nombre</div>
-                                <div>{{ registro.ref2nombre }}</div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="small text-body-secondary">Correo</div>
-                                <div>{{ registro.ref2mail }}</div>
-                            </div>
-                            <div>
-                                <div class="small text-body-secondary">Carta de recomendación</div>
-                                {% if registro.ref2recomName %}
-                                    <a href="{{ asset(vich_uploader_asset(registro, 'ref2recomFile')) }}" target="_blank">{{ registro.ref2recomName }}</a>
-                                {% else %}
-                                    <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
-                                {% endif %}
-                            </div>
+                </div>
+                <div class="border rounded-3 p-3 mb-3">
+                    <h3 class="h6 text-body-secondary mb-3">Referencia 2</h3>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Nombre</div>
+                            <div>{{ registro.ref2nombre }}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Correo</div>
+                            <div>{{ registro.ref2mail }}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Carta de recomendación</div>
+                            {% if registro.ref2recomName %}
+                                <a href="{{ asset(vich_uploader_asset(registro, 'ref2recomFile')) }}" target="_blank">{{ registro.ref2recomName }}</a>
+                            {% else %}
+                                <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="border rounded-3 p-3 h-100">
-                            <h3 class="h6 text-body-secondary mb-3">Referencia 3</h3>
-                            <div class="mb-2">
-                                <div class="small text-body-secondary">Nombre</div>
-                                <div>{{ registro.ref3nombre }}</div>
-                            </div>
-                            <div class="mb-2">
-                                <div class="small text-body-secondary">Correo</div>
-                                <div>{{ registro.ref3mail }}</div>
-                            </div>
-                            <div>
-                                <div class="small text-body-secondary">Carta de recomendación</div>
-                                {% if registro.ref3recomName %}
-                                    <a href="{{ asset(vich_uploader_asset(registro, 'ref3recomFile')) }}" target="_blank">{{ registro.ref3recomName }}</a>
-                                {% else %}
-                                    <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
-                                {% endif %}
-                            </div>
+                </div>
+                <div class="border rounded-3 p-3">
+                    <h3 class="h6 text-body-secondary mb-3">Referencia 3</h3>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Nombre</div>
+                            <div>{{ registro.ref3nombre }}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Correo</div>
+                            <div>{{ registro.ref3mail }}</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="small text-body-secondary">Carta de recomendación</div>
+                            {% if registro.ref3recomName %}
+                                <a href="{{ asset(vich_uploader_asset(registro, 'ref3recomFile')) }}" target="_blank">{{ registro.ref3recomName }}</a>
+                            {% else %}
+                                <span class="badge bg-warning"><i class="fa-solid fa-circle-exclamation"></i> Pendiente</span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
