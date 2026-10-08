@@ -22,6 +22,7 @@
                     <th>Correo</th>
                     <th>Recomendación 1</th>
                     <th>Recomendación 2</th>
+                    <th>Recomendación 3</th>
                     <th>Activo</th>
                     <th>Ver</th>
                 </tr>
@@ -33,6 +34,7 @@
                         <td>{{ registro.mail }}</td>
                         <td>{% if registro.ref1recomName %}<span class="badge bg-success"><i class="fa-solid fa-square-check"></i> Si</span>{% else %}<span class="badge bg-danger"><i class="fa-solid fa-circle-xmark"></i> No</span>{% endif %}</td>
                         <td>{% if registro.ref2recomName %}<span class="badge bg-success"><i class="fa-solid fa-square-check"></i> Si</span>{% else %}<span class="badge bg-danger"><i class="fa-solid fa-circle-xmark"></i> No</span>{% endif %}</td>
+                        <td>{% if registro.ref3recomName %}<span class="badge bg-success"><i class="fa-solid fa-square-check"></i> Si</span>{% else %}<span class="badge bg-danger"><i class="fa-solid fa-circle-xmark"></i> No</span>{% endif %}</td>
                         <td class="text-center">
                             {% if registro.activo == true %}
                                 <span class="badge bg-success"><i class="fa-solid fa-square-check"></i> Si</span>
