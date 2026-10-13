@@ -51,7 +51,7 @@ class Registro
     )]
     public ?File $solicitudFile = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $solicitudName = null;
 
     #[Vich\UploadableField(mapping: 'registro_cv', fileNameProperty: 'cvName')]
@@ -63,7 +63,7 @@ class Registro
     )]
     public ?File $cvFile = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $cvName = null;
 
     #[Vich\UploadableField(mapping: 'registro_comprobante', fileNameProperty: 'comprobanteName')]
@@ -75,7 +75,7 @@ class Registro
     )]
     public ?File $comprobanteFile = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $comprobanteName = null;
 
     #[Vich\UploadableField(mapping: 'registro_proyecto', fileNameProperty: 'proyectoName')]
@@ -87,7 +87,7 @@ class Registro
     )]
     public ?File $proyectoFile = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $proyectoName = null;
 
     #[ORM\Column(name: 'ref1nombre', length: 255)]
@@ -107,7 +107,7 @@ class Registro
     )]
     public ?File $ref1recomFile = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $ref1recomName = null;
 
     #[ORM\Column(name: 'ref2nombre', length: 255)]
@@ -127,7 +127,7 @@ class Registro
     )]
     public ?File $ref2recomFile = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $ref2recomName = null;
 
     #[ORM\Column(name: 'ref3nombre', length: 255)]
@@ -147,7 +147,7 @@ class Registro
     )]
     public ?File $ref3recomFile = null;
 
-    #[ORM\Column(length: 50, nullable: true)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $ref3recomName = null;
 
     #[ORM\Column(nullable: true)]
