@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error - Convocatoria de Investigación - CCM{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block body %}
+
+    {% if status_code == 404 %}
+        {% set es = 'La página que busca no existe.' %}
+        {% set en = 'The page you are looking for does not exist.' %}
+    {% elseif status_code == 403 %}
+        {% set es = 'No tiene permiso para acceder a esta página.' %}
+        {% set en = 'You do not have permission to access this page.' %}
+    {% else %}
+        {% set es = 'Ocurrió un problema al procesar su solicitud. Por favor intente de nuevo más tarde.' %}
+        {% set en = 'There was a problem processing your request. Please try again later.' %}
+    {% endif %}
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm text-center mb-4">
+                    <div class="card-body py-5">
+                        <i class="fa-solid fa-triangle-exclamation text-warning fa-2x mb-3"></i>
+                        <p class="mb-3">{{ es }}</p>
+                        <p class="small text-body-secondary mb-0">
+                            Si el problema persiste, escriba a <strong>webmaster<i class="fa-solid fa-at"></i>matmor.unam.mx</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm text-center mb-4">
+                    <div class="card-body py-5">
+                        <i class="fa-solid fa-triangle-exclamation text-warning fa-2x mb-3"></i>
+                        <p class="mb-3">{{ en }}</p>
+                        <p class="small text-body-secondary mb-0">
+                            If the problem persists, please write to <strong>webmaster<i class="fa-solid fa-at"></i>matmor.unam.mx</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a class="btn btn-primary" href="{{ path('registro_new') }}">Volver al inicio / Back to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
