@@ -36,7 +36,7 @@ class RegistroController extends AbstractController
         MailerInterface $mailer,
         RegistrationDeadline $deadline,
         string $mailerFromAddress,
-        string $mailerBccAddress,
+        array $mailerBccAddress,
     ): Response {
         if ($deadline->isClosed()) {
             return $this->render('registro/new.html.twig', [
@@ -65,7 +65,7 @@ class RegistroController extends AbstractController
                 ->subject('Acuse de recibo/Acknowledgment')
                 ->from($mailerFromAddress)
                 ->to($registro->getMail())
-                ->bcc($mailerBccAddress)
+                ->bcc(...$mailerBccAddress)
                 ->textTemplate('emails/mail.txt.twig')
                 ->context(['entity' => $registro]));
 
@@ -100,7 +100,7 @@ class RegistroController extends AbstractController
         ?string $referencia,
         ?string $mailref,
         string $mailerFromAddress,
-        string $mailerBccAddress,
+        array $mailerBccAddress,
     ): void {
         $url = $this->generateUrl('registro_recom', [
             'id' => $registro->getId(),
@@ -113,7 +113,7 @@ class RegistroController extends AbstractController
             ->subject('Recomendación/Recommendation')
             ->from($mailerFromAddress)
             ->to($mailref)
-            ->bcc($mailerBccAddress)
+            ->bcc(...$mailerBccAddress)
             ->textTemplate('emails/mail_ref.txt.twig')
             ->context([
                 'entity' => $registro,
@@ -134,7 +134,7 @@ class RegistroController extends AbstractController
         int $id,
         int $ref,
         string $mailerFromAddress,
-        string $mailerBccAddress,
+        array $mailerBccAddress,
     ): Response {
         if ($mail !== $registro->getMail() || $id !== $registro->getId()) {
             throw $this->createNotFoundException('Existe algún problema con la información de registro');
@@ -190,7 +190,7 @@ class RegistroController extends AbstractController
                 ->from($mailerFromAddress)
                 ->to($refmail)
                 ->cc($registro->getMail())
-                ->bcc($mailerBccAddress)
+                ->bcc(...$mailerBccAddress)
                 ->textTemplate('emails/mail_carta.txt.twig')
                 ->context(['entity' => $registro, 'refnombre' => $refnombre]));
 
